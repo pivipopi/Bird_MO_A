@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from pybo.views import base_views
 
 urlpatterns = [
@@ -23,4 +25,5 @@ urlpatterns = [
     path('common/', include('common.urls')),
     path('', base_views.index, name='index'),
     # path('board/', include('board.urls')),
-]
+] 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
