@@ -34,12 +34,17 @@
                             <div>{{ question.create_date }}</div>
                         </div>
                     </div>
+                    <!--dd-->
+                    {% for photo in question.photo_set.all%}
+                    <img src="{{photo.image.url}}" width="500"><br>
+                    {% endfor %}
+                    <!--dd-->
                     {% if request.user == question.author %}
                     <div class="my-3">
-                        <a href="{% url 'pybo:question_modify' question.id  %}"
+                        <a href="{% url 'pybo:question_modify' question.id %}"
                            class="btn btn-sm btn-outline-secondary">수정</a>
                         <a href="#" class="delete btn btn-sm btn-outline-secondary"
-                           data-uri="{% url 'pybo:question_delete' question.id  %}">삭제</a>
+                           data-uri="{% url 'pybo:question_delete' question.id %}">삭제</a>
                     </div>
                     {% endif %}
                     <!-- 질문 댓글 Start -->
@@ -56,16 +61,16 @@
                                 {% endif %}
                             </span>
                             {% if request.user == comment.author %}
-                            <a href="{% url 'pybo:comment_modify_question' comment.id  %}" class="small">수정</a>,
+                            <a href="{% url 'pybo:comment_modify_question' comment.id %}" class="small">수정</a>,
                             <a href="#" class="small delete"
-                               data-uri="{% url 'pybo:comment_delete_question' comment.id  %}">삭제</a>
+                               data-uri="{% url 'pybo:comment_delete_question' comment.id %}">삭제</a>
                             {% endif %}
                         </div>
                     {% endfor %}
                     </div>
                     {% endif %}
                     <div>
-                        <a href="{% url 'pybo:comment_create_question' question.id  %}"
+                        <a href="{% url 'pybo:comment_create_question' question.id %}"
                            class="small"><small>댓글 추가 ..</small></a>
                     </div>
                     <!-- 질문 댓글 End -->

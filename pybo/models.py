@@ -13,10 +13,16 @@ class Question(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_question')
     modify_date = models.DateTimeField(null=True, blank=True)
     voter = models.ManyToManyField(User, related_name='voter_question')
-    images = models.ImageField(blank=True, upload_to="images", null=True)
-
+    image = models.ImageField(upload_to='images/',blank=True, null=True)
+    
     def __str__(self):
         return self.subject
+
+
+class Photo(models.Model):
+    post = models.ForeignKey(Question, on_delete=models.CASCADE, null=True)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
+
 
 class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
