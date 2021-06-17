@@ -33,8 +33,4 @@ urlpatterns = [
 
     # #cover
     path('base_views/cover',base_views.cover, name='cover'),
-<<<<<<< HEAD
-    # path('', cover_views.index name='index'),
-=======
->>>>>>> b-02-5
 ]
